@@ -12,17 +12,20 @@ class GradeEngine:
         for course in topo_order:
             course.compute_grade(self.alpha)
 
-    def get_cgpa(self) -> float:
+    def get_cgpa(self, up_to_year: int | None = None, up_to_semester: int | None = None) -> float:
         evaluated_courses = [course for course in self.graph.courses.values() if course.grade is not None]
 
+        if up_to_year is not None:
+            evaluated_courses = [c for c in evaluated_courses if c.year is not None and c.year <= up_to_year]
+        if up_to_semester is not None:
+            evaluated_courses = [c for c in evaluated_courses if c.semester is not None and c.semester <= up_to_semester]
+
         if not evaluated_courses:
-            print("No courses evaluated.")
             return 0.0
 
-        terminal_courses = [course for course in evaluated_courses if not course.dependents]
+        terminal_courses = [course for course in evaluated_courses if not any(dep in evaluated_courses for dep in course.dependents)]
 
         if not terminal_courses:
-            print("No terminal evaluated courses found. Cannot compute CGPA.")
             return 0.0
 
         total = sum(course.grade * self.graph.credit_map[course.category] for course in terminal_courses)
