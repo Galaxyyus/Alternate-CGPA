@@ -6,7 +6,8 @@ def load_courses_structure(filename: str) -> CourseGraph:
     with open(filename, "r") as f:
         data = json.load(f)
 
-    graph = CourseGraph()
+    categories = data.get("categories", {})
+    graph = CourseGraph(categories)
 
     courses_data = data["courses"]
     years_data = data["years"]
@@ -14,7 +15,8 @@ def load_courses_structure(filename: str) -> CourseGraph:
     # Create all courses node
     for course_id, info in courses_data.items():
         name = info["name"]
-        graph.add_course(course_id, name)
+        category = info.get("category")
+        graph.add_course(course_id, name, category)
 
     # Add Dependencies
     for course_id, info in courses_data.items():

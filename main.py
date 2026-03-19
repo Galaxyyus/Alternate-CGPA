@@ -5,7 +5,9 @@ def main() -> None:
     alpha: float = 0.7
 
     engine = GradeEngine(alpha)
-    engine.print_cgpa()
+    cgpa = engine.get_cgpa()
+    print(f"CGPA : {cgpa:.2f}")
+    engine.print_course_details("CS1106")  # Testing on Data Structures
 
 if __name__ == "__main__":
     main()

@@ -20,7 +20,7 @@
             ]
         },
         "2": {
-            "1": [
+            "3": [
                 "MA1264",
                 "EC1263",
                 "CS1201",
@@ -29,7 +29,7 @@
                 "CS1207",
                 "CS1209"
             ],
-            "2": [
+            "4": [
                 "MS1262",
                 "CS1202",
                 "CS1204",
@@ -40,7 +40,7 @@
             ]
         },
         "3": {
-            "1": [
+            "5": [
                 "CS1301",
                 "CS1303",
                 "CS1305",
@@ -50,7 +50,7 @@
                 "CS1309",
                 "CS1311"
             ],
-            "2": [
+            "6": [
                 "CS1302",
                 "CS1304",
                 "CS13XX2",
@@ -62,7 +62,7 @@
             ]
         },
         "4": {
-            "1": [
+            "7": [
                 "CS1401",
                 "CS14XX1",
                 "CS14XX2",
@@ -71,7 +71,7 @@
                 "CS1495",
                 "CS1491"
             ],
-            "2": [
+            "8": [
                 "CS14XX3",
                 "CS14XX4",
                 "CS14XX5",
@@ -391,17 +391,17 @@
             "category": "Soft Skills"
         }
     },
-    "categories": [
-        "Artificial Intelligence",
-        "Basic Science",
-        "Choice courses",
-        "Core Subject",
-        "Cyber Security",
-        "Data Science",
-        "Projects & Seminars",
-        "Semi-Core Subject",
-        "Soft Skills",
-        "Systems & Infrastructure",
-        "Web Development"
-    ]
+    "categories": {
+        "Artificial Intelligence": 4,
+        "Basic Science": 2,
+        "Choice courses": 2,
+        "Core Subject": 5,
+        "Cyber Security": 4,
+        "Data Science": 4,
+        "Projects & Seminars": 4,
+        "Semi-Core Subject": 3,
+        "Soft Skills": 3,
+        "Systems & Infrastructure": 5,
+        "Web Development": 4
+    }
 }

@@ -12,14 +12,33 @@ class GradeEngine:
         for course in topo_order:
             course.compute_grade(self.alpha)
 
-    def print_cgpa(self) -> None:
+    def get_cgpa(self) -> float:
         evaluated_courses = [course for course in self.graph.courses.values() if course.grade is not None]
 
         if not evaluated_courses:
             print("No courses evaluated.")
+            return 0.0
+
+        terminal_courses = [course for course in evaluated_courses if not course.dependents]
+
+        if not terminal_courses:
+            print("No terminal evaluated courses found. Cannot compute CGPA.")
+            return 0.0
+
+        total = sum(course.grade * self.graph.credit_map[course.category] for course in terminal_courses)
+        cgpa = total / sum(self.graph.credit_map[course.category] for course in terminal_courses)
+
+        return cgpa
+
+    def print_course_details(self, course_identifier: str) -> None:
+        target_course = None
+        for cid, course in self.graph.courses.items():
+            if cid == course_identifier or course.name == course_identifier:
+                target_course = course
+                break
+                
+        if not target_course:
+            print(f"Course '{course_identifier}' not found.")
             return
 
-        total = sum(course.grade for course in evaluated_courses)
-        cgpa = total / len(evaluated_courses)
-
-        print(f"CGPA : {cgpa:.2f}\n")
+        target_course.print_details(self.alpha)

@@ -3,12 +3,13 @@ from courses import Course
 
 
 class CourseGraph:
-    def __init__(self) -> None:
+    def __init__(self, categories: dict[str, int] | None = None) -> None:
         self.courses: dict[str, Course] = {}
+        self.credit_map: dict[str, int] = categories if categories is not None else {}
 
-    def add_course(self, course_id: str, name: str) -> None:
+    def add_course(self, course_id: str, name: str, category: str | None = None) -> None:
         if course_id not in self.courses:
-            self.courses[course_id] = Course(course_id, name)
+            self.courses[course_id] = Course(course_id, name, category)
 
     def add_dependency(self, prerequisites: str, dependent: str) -> None:
         self.courses[prerequisites].dependents.add(self.courses[dependent])
