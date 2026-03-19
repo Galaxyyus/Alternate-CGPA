@@ -1,0 +1,407 @@
+{
+    "years": {
+        "1": {
+            "1": [
+                "MA1161",
+                "PH1161",
+                "HS1161",
+                "CS1101",
+                "BT1161",
+                "CS1103"
+            ],
+            "2": [
+                "MA1162",
+                "EE1161",
+                "CS1102",
+                "CS1104",
+                "CS1106",
+                "CS1108",
+                "CS1110"
+            ]
+        },
+        "2": {
+            "1": [
+                "MA1264",
+                "EC1263",
+                "CS1201",
+                "CS1203",
+                "CS1205",
+                "CS1207",
+                "CS1209"
+            ],
+            "2": [
+                "MS1262",
+                "CS1202",
+                "CS1204",
+                "CS1206",
+                "CS1208",
+                "CS1210",
+                "CS1212"
+            ]
+        },
+        "3": {
+            "1": [
+                "CS1301",
+                "CS1303",
+                "CS1305",
+                "CS1307",
+                "CS13XX1",
+                "CS1381",
+                "CS1309",
+                "CS1311"
+            ],
+            "2": [
+                "CS1302",
+                "CS1304",
+                "CS13XX2",
+                "CS13XX3",
+                "CS1306",
+                "CS1382",
+                "CS1308",
+                "CS1310"
+            ]
+        },
+        "4": {
+            "1": [
+                "CS1401",
+                "CS14XX1",
+                "CS14XX2",
+                "CS1403",
+                "CS1489",
+                "CS1495",
+                "CS1491"
+            ],
+            "2": [
+                "CS14XX3",
+                "CS14XX4",
+                "CS14XX5",
+                "CS1498"
+            ]
+        }
+    },
+    "courses": {
+        "MA1161": {
+            "name": "Linear Algebra, Calculus and Ordinary Differential Equations",
+            "category": "Basic Science",
+            "prerequisites": []
+        },
+        "MA1162": {
+            "name": "Integral and Vector Calculus, Laplace and Fourier Transforms",
+            "category": "Basic Science",
+            "prerequisites": [
+                "MA1161"
+            ]
+        },
+        "MA1264": {
+            "name": "Probability and Statistics",
+            "category": "Basic Science",
+            "prerequisites": []
+        },
+        "PH1161": {
+            "name": "Engineering Physics",
+            "category": "Basic Science",
+            "prerequisites": []
+        },
+        "EC1263": {
+            "name": "Computer Organization and Architecture",
+            "prerequisites": [],
+            "category": "Systems & Infrastructure"
+        },
+        "EE1161": {
+            "name": "Basic Electrical & Electronics Engineering",
+            "category": "Basic Science",
+            "prerequisites": []
+        },
+        "MS1262": {
+            "name": "Business Essentials for Engineers",
+            "category": "Soft Skills",
+            "prerequisites": [
+                "MA1161",
+                "MA1264"
+            ]
+        },
+        "BT1161": {
+            "name": "Biology for Engineers",
+            "category": "Basic Science",
+            "prerequisites": []
+        },
+        "CS1101": {
+            "name": "Programming and Data Structures",
+            "prerequisites": [],
+            "category": "Core Subject"
+        },
+        "CS1102": {
+            "name": "Design Thinking",
+            "category": "Soft Skills",
+            "prerequisites": []
+        },
+        "CS1103": {
+            "name": "Programming and Data Structures Lab",
+            "prerequisites": [],
+            "category": "Core Subject"
+        },
+        "CS1104": {
+            "name": "Optimization Techniques",
+            "prerequisites": [
+                "CS1101",
+                "CS1106"
+            ],
+            "category": "Semi-Core Subject"
+        },
+        "CS1106": {
+            "name": "Data Structures and Algorithms",
+            "prerequisites": [
+                "CS1101"
+            ],
+            "category": "Core Subject"
+        },
+        "CS1108": {
+            "name": "Web Programming Lab",
+            "prerequisites": [],
+            "category": "Web Development"
+        },
+        "CS1110": {
+            "name": "Mathematical Foundations of CS",
+            "prerequisites": [],
+            "category": "Semi-Core Subject"
+        },
+        "CS1201": {
+            "name": "Theory of Computation",
+            "prerequisites": [],
+            "category": "Semi-Core Subject"
+        },
+        "CS1202": {
+            "name": "Compiler Design",
+            "prerequisites": [
+                "CS1201"
+            ],
+            "category": "Core Subject"
+        },
+        "CS1203": {
+            "name": "Design and Analysis of Algorithms",
+            "prerequisites": [
+                "CS1101",
+                "CS1106"
+            ],
+            "category": "Core Subject"
+        },
+        "CS1204": {
+            "name": "Software Engineering",
+            "prerequisites": [],
+            "category": "Core Subject"
+        },
+        "CS1205": {
+            "name": "Object Oriented Programming",
+            "prerequisites": [
+                "CS1101"
+            ],
+            "category": "Core Subject"
+        },
+        "CS1206": {
+            "name": "Database Management Systems",
+            "prerequisites": [
+                "CS1106"
+            ],
+            "category": "Core Subject"
+        },
+        "CS1207": {
+            "name": "Object Oriented Programming Laboratory",
+            "prerequisites": [
+                "CS1205"
+            ],
+            "category": "Core Subject"
+        },
+        "CS1208": {
+            "name": "Operating Systems",
+            "prerequisites": [
+                "CS1106",
+                "EC1263"
+            ],
+            "category": "Systems & Infrastructure"
+        },
+        "CS1209": {
+            "name": "Statistical Tools Practice",
+            "prerequisites": [],
+            "category": "Basic Science"
+        },
+        "CS1210": {
+            "name": "Database Systems Laboratory",
+            "prerequisites": [],
+            "category": "Core Subject"
+        },
+        "CS1212": {
+            "name": "Operating Systems Laboratory",
+            "prerequisites": [],
+            "category": "Systems & Infrastructure"
+        },
+        "CS1301": {
+            "name": "Data Warehousing and Data Mining",
+            "prerequisites": [
+                "CS1206"
+            ],
+            "category": "Data Science"
+        },
+        "CS1302": {
+            "name": "Cryptography and Network Security",
+            "prerequisites": [
+                "CS1305"
+            ],
+            "category": "Cyber Security"
+        },
+        "CS1303": {
+            "name": "Full Stack Development",
+            "prerequisites": [],
+            "category": "Web Development"
+        },
+        "CS1304": {
+            "name": "Machine Learning",
+            "prerequisites": [
+                "CS1106"
+            ],
+            "category": "Artificial Intelligence"
+        },
+        "CS1305": {
+            "name": "Computer Networks",
+            "prerequisites": [
+                "CS1206"
+            ],
+            "category": "Systems & Infrastructure"
+        },
+        "CS1306": {
+            "name": "Product Development",
+            "prerequisites": [
+                "CS1102"
+            ],
+            "category": "Core Subject"
+        },
+        "CS1307": {
+            "name": "Distributed Computing",
+            "prerequisites": [],
+            "category": "Systems & Infrastructure"
+        },
+        "CS1308": {
+            "name": "Cryptography and Network Security Laboratory",
+            "prerequisites": [],
+            "category": "Cyber Security"
+        },
+        "CS1309": {
+            "name": "Computer Networks Laboratory",
+            "prerequisites": [],
+            "category": "Systems & Infrastructure"
+        },
+        "CS1310": {
+            "name": "Machine Learning Laboratory",
+            "prerequisites": [],
+            "category": "Artificial Intelligence"
+        },
+        "CS1311": {
+            "name": "Knowledge Engineering Laboratory",
+            "prerequisites": [],
+            "category": "Artificial Intelligence"
+        },
+        "CS1381": {
+            "name": "Fractal Course - I",
+            "category": "Choice courses",
+            "prerequisites": []
+        },
+        "CS1382": {
+            "name": "Fractal Course - II",
+            "prerequisites": [],
+            "category": "Choice courses"
+        },
+        "CS13XX1": {
+            "name": "Professional Elective - I",
+            "prerequisites": [],
+            "category": "Choice courses"
+        },
+        "CS13XX2": {
+            "name": "Professional Elective - II",
+            "prerequisites": [],
+            "category": "Choice courses"
+        },
+        "CS13XX3": {
+            "name": "Professional Elective - III",
+            "prerequisites": [],
+            "category": "Choice courses"
+        },
+        "CS1401": {
+            "name": "High Performance Computing",
+            "prerequisites": [
+                "CS1208",
+                "CS1305"
+            ],
+            "category": "Core Subject"
+        },
+        "CS1403": {
+            "name": "High Performance Computing Laboratory",
+            "prerequisites": [
+                "CS1208",
+                "CS1305"
+            ],
+            "category": "Core Subject"
+        },
+        "CS1489": {
+            "name": "Seminar and Technical Writing",
+            "prerequisites": [],
+            "category": "Projects & Seminars"
+        },
+        "CS1491": {
+            "name": "Short Term Industrial/EPICS/Research Experience",
+            "prerequisites": [],
+            "category": "Projects & Seminars"
+        },
+        "CS1495": {
+            "name": "Minor Project",
+            "prerequisites": [],
+            "category": "Projects & Seminars"
+        },
+        "CS1498": {
+            "name": "Major Project",
+            "prerequisites": [],
+            "category": "Projects & Seminars"
+        },
+        "CS14XX1": {
+            "name": "Professional Elective-IV",
+            "prerequisites": [],
+            "category": "Choice courses"
+        },
+        "CS14XX2": {
+            "name": "Professional Elective-V",
+            "prerequisites": [],
+            "category": "Choice courses"
+        },
+        "CS14XX3": {
+            "name": "Professional Elective - VI",
+            "prerequisites": [],
+            "category": "Choice courses"
+        },
+        "CS14XX4": {
+            "name": "Professional Elective - VII",
+            "prerequisites": [],
+            "category": "Choice courses"
+        },
+        "CS14XX5": {
+            "name": "Professional Elective - VIII",
+            "prerequisites": [],
+            "category": "Choice courses"
+        },
+        "HS1161": {
+            "name": "English for Technical Communication",
+            "prerequisites": [],
+            "category": "Soft Skills"
+        }
+    },
+    "categories": [
+        "Artificial Intelligence",
+        "Basic Science",
+        "Choice courses",
+        "Core Subject",
+        "Cyber Security",
+        "Data Science",
+        "Projects & Seminars",
+        "Semi-Core Subject",
+        "Soft Skills",
+        "Systems & Infrastructure",
+        "Web Development"
+    ]
+}

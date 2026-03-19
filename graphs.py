@@ -1,35 +1,38 @@
 from collections import deque
-
 from courses import Course
 
 
 class CourseGraph:
-    def __init__(self):
-        self.courses = {}
+    def __init__(self) -> None:
+        self.courses: dict[str, Course] = {}
 
-    def add_course(self, name, raw_grade):
-        if name not in self.courses:
-            self.courses[name] = Course(name, raw_grade)
+    def add_course(self, course_id: str, name: str) -> None:
+        if course_id not in self.courses:
+            self.courses[course_id] = Course(course_id, name)
 
-    def add_dependency(self, parent, child):
-        self.courses[parent].dependents.add(self.courses[child])
-        self.courses[child].prerequisites.add(self.courses[parent])
+    def add_dependency(self, prerequisites: str, dependent: str) -> None:
+        self.courses[prerequisites].dependents.add(self.courses[dependent])
+        self.courses[dependent].prerequisites.add(self.courses[prerequisites])
 
-    def compute(self, alpha):
+    def compute(self, alpha: float) -> None:
         topo_order = self.topological_sort()
 
         for course in topo_order:
-            course.compute_effective(alpha)
+            course.compute_grade(alpha)
 
-    def topological_sort(self):
+    def validate(self) -> None:
+        """Validates the graph to ensure there are no cycles."""
+        self.topological_sort()
+
+    def topological_sort(self) -> list[Course]:
         in_degree = {c: len(c.prerequisites) for c in self.courses.values()}
-        queue = deque()
+        queue: deque[Course] = deque()
 
         for course, deg in in_degree.items():
             if deg == 0:
                 queue.append(course)
 
-        topo_order = []
+        topo_order: list[Course] = []
 
         while queue:
             node = queue.popleft()
@@ -44,57 +47,3 @@ class CourseGraph:
             raise ValueError("Graph contains a cycle")
 
         return topo_order
-
-
-def build_graph_from_file(filename: str) -> CourseGraph:
-    graph = CourseGraph()
-
-    with open(filename, "r") as f:
-        lines = [line.strip() for line in f]
-
-    i = 0
-    temp_dependencies = []
-
-    while i < len(lines):
-        if lines[i] == "":
-            i += 1
-            continue
-
-        if not lines[i].startswith("COURSE"):
-            raise ValueError(f"Invalid format near line {i + 1}")
-
-        _, pascal_name = lines[i].split()
-        course_name = pascal_to_space(pascal_name)
-
-        marks = int(lines[i + 1])
-
-        deps_line = ""
-        if i + 2 < len(lines):
-            deps_line = lines[i + 2]
-
-        dependencies = []
-        if deps_line != "" and not deps_line.startswith("COURSE"):
-            dependencies = deps_line.split()
-            i += 3
-        else:
-            i += 2
-
-        graph.add_course(course_name, marks)
-
-        for dep in dependencies:
-            dep_name = pascal_to_space(dep)
-            temp_dependencies.append((dep_name, course_name))
-
-    for prereq, dependent in temp_dependencies:
-        graph.add_dependency(prereq, dependent)
-
-    return graph
-
-
-def pascal_to_space(name: str) -> str:
-    result = []
-    for i, ch in enumerate(name):
-        if i > 0 and ch.isupper():
-            result.append(" ")
-        result.append(ch)
-    return "".join(result)
