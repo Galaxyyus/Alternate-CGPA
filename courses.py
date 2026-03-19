@@ -1,5 +1,4 @@
 from __future__ import annotations
-import math
 
 
 class Course:
@@ -10,33 +9,25 @@ class Course:
         self.name: str = name
 
         self.raw_score: int = raw_score
-        self.raw_grade: int = self._compute_raw_grade(raw_score)
-        self.effective_grade: int | None = None
+        self.grade: float | None = None
 
         self.prerequisites: set[Course] = set()
         self.dependents: set[Course] = set()
 
-    def _compute_raw_grade(self, score: float) -> int:
-        grade = int(score // 10) + 1
-        return min(grade, 10)
-
     def compute_effective(self, alpha: float) -> None:
         if not self.prerequisites:
-            self.effective_grade = self.raw_grade
+            self.grade = self.raw_score / 10
             return
 
-        parent_avg = 0
+        prerequisites_average = 0
         for parent in self.prerequisites:
-            if (grade := parent.effective_grade) is not None:
-                parent_avg += grade
+            if (grade := parent.grade) is not None:
+                prerequisites_average += grade
             else:
                 raise ValueError(f"Cannot compute {self.name}: prerequisite not evaluated yet")
+        prerequisites_average /= len(self.prerequisites)
 
-        parent_avg /= len(self.prerequisites)
-
-        value = alpha * self.raw_grade + (1 - alpha) * parent_avg
-
-        self.effective_grade = math.ceil(value)
+        self.grade = (alpha * self.raw_score / 10) + ((1 - alpha) * prerequisites_average)
 
     def __hash__(self):
         return hash(self.name)
@@ -45,4 +36,4 @@ class Course:
         return isinstance(other, Course) and self.name == other.name
 
     def __repr__(self):
-        return f"{self.name}: score={self.raw_score}, raw_grade={self.raw_grade}, effective={self.effective_grade}"
+        return f"{self.name}: score={self.raw_score}, grade={self.grade: .2f}"
