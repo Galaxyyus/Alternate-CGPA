@@ -1,5 +1,6 @@
 import file_loader
 
+
 class GradeEngine:
     def __init__(self, alpha: float) -> None:
         self.alpha = alpha
@@ -28,8 +29,9 @@ class GradeEngine:
         if not terminal_courses:
             return 0.0
 
-        total = sum(course.grade * self.graph.credit_map[course.category] for course in terminal_courses)
-        cgpa = total / sum(self.graph.credit_map[course.category] for course in terminal_courses)
+        if not any(course.grade is None for course in terminal_courses):
+            total = sum(course.grade * self.graph.credit_map[course.category] for course in terminal_courses)  # type: ignore
+            cgpa = total / sum(self.graph.credit_map[course.category] for course in terminal_courses)  # type: ignore
 
         return cgpa
 
@@ -39,7 +41,7 @@ class GradeEngine:
             if cid == course_identifier or course.name == course_identifier:
                 target_course = course
                 break
-                
+
         if not target_course:
             print(f"Course '{course_identifier}' not found.")
             return
