@@ -1,0 +1,186 @@
+{
+    "years": {
+        "1": {
+            "1": [
+                "CS101",
+                "HS102",
+                "MA103",
+                "HS104",
+                "CS105"
+            ],
+            "2": [
+                "CS106",
+                "CS107",
+                "MA108",
+                "CS109",
+                "CS1010",
+                "HS1011"
+            ]
+        },
+        "2": {
+            "3": [
+                "MA112",
+                "CS113",
+                "CS114",
+                "CS115",
+                "CS116",
+                "HS117"
+            ],
+            "4": [
+                "CS118",
+                "CS119",
+                "CS120"
+            ]
+        }
+    },
+    "courses": {
+        "CS101": {
+            "name": "Intro to HTML/CSS",
+            "category": "Web Development",
+            "prerequisites": []
+        },
+        "HS102": {
+            "name": "Communication",
+            "category": "Soft Skills",
+            "prerequisites": []
+        },
+        "MA103": {
+            "name": "Linear Algebra",
+            "category": "Basic Science",
+            "prerequisites": []
+        },
+        "CS1010": {
+            "name": "UI/UX Design",
+            "category": "Web Development",
+            "prerequisites": [
+                "CS101"
+            ]
+        },
+        "CS105": {
+            "name": "Encryption",
+            "category": "Cyber Security",
+            "prerequisites": []
+        },
+        "CS106": {
+            "name": "Forensics",
+            "category": "Cyber Security",
+            "prerequisites": [
+                "CS105"
+            ]
+        },
+        "CS107": {
+            "name": "DBMS",
+            "category": "Core Subject",
+            "prerequisites": [
+                "MA103"
+            ]
+        },
+        "MA108": {
+            "name": "Calculus",
+            "category": "Basic Science",
+            "prerequisites": [
+                "MA103"
+            ]
+        },
+        "CS109": {
+            "name": "Programming",
+            "category": "Core Subject",
+            "prerequisites": [
+                "MA103"
+            ]
+        },
+        "HS104": {
+            "name": "Management",
+            "category": "Soft Skills",
+            "prerequisites": [
+                "HS102"
+            ]
+        },
+        "HS1011": {
+            "name": "English",
+            "category": "Soft Skills",
+            "prerequisites": [
+                "HS102"
+            ]
+        },
+        "MA112": {
+            "name": "Statistics",
+            "category": "Basic Science",
+            "prerequisites": [
+                "MA108"
+            ]
+        },
+        "CS113": {
+            "name": "Data Structures",
+            "category": "Core Subject",
+            "prerequisites": [
+                "CS109"
+            ]
+        },
+        "CS114": {
+            "name": "Networking",
+            "category": "Systems & Infrastructure",
+            "prerequisites": []
+        },
+        "CS115": {
+            "name": "Data Structures",
+            "category": "Core Subject",
+            "prerequisites": [
+                "CS113",
+                "MA108"
+            ]
+        },
+        "CS116": {
+            "name": "Modern JavaScript",
+            "category": "Web Development",
+            "prerequisites": [
+                "CS1010",
+                "CS109"
+            ]
+        },
+        "CS118": {
+            "name": "Full Stack Frameworks",
+            "category": "Web Development",
+            "prerequisites": [
+                "CS116",
+                "CS107"
+            ]
+        },
+        "HS117": {
+            "name": "Management",
+            "category": "Soft Skills",
+            "prerequisites": [
+                "HS104"
+            ]
+        },
+        "CS119": {
+            "name": "DBMS",
+            "category": "Core Subject",
+            "prerequisites": [
+                "CS107",
+                "CS113"
+            ]
+        },
+        "CS120": {
+            "name": "Network Security",
+            "category": "Cyber Security",
+            "prerequisites": [
+                "CS106",
+                "CS114"
+            ]
+        }
+    },
+    "categories": {
+        "Basic Science": 2,
+        "Choice courses": 2,
+        "Soft Skills": 3,
+        "Semi-Core Subject": 3,
+        "Artificial Intelligence": 4,
+        "Cyber Security": 4,
+        "Data Science": 4,
+        "Projects & Seminars": 4,
+        "Web Development": 4,
+        "Core Subject": 5,
+        "Systems & Infrastructure": 5
+    }
+}
