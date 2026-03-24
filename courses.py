@@ -10,7 +10,7 @@ class Course:
         self.raw_score: int = 0
         self.grade: float | None = None
         self.is_failed: bool = False
-        self.failure_type: str | None = None  # "SELF_FAIL" or "PREREQ_FAIL"
+        self.failure_type: str | None = None
 
         self.prerequisites: set[Course] = set()
         self.dependents: set[Course] = set()
@@ -26,7 +26,6 @@ class Course:
         if self.raw_score >= 85:
             self.grade = self.raw_score / 10
             return
-
         # Raw score < 40 -> Fail
         if self.raw_score < 40:
             self.is_failed = True
@@ -36,7 +35,6 @@ class Course:
 
         # Check for prerequisite failures
         failed_prereqs = [p for p in self.prerequisites if p.is_failed]
-
         if failed_prereqs:
             self.is_failed = True
             self.failure_type = "PREREQ_FAIL"
@@ -78,19 +76,23 @@ class Course:
             print("Prerequisites: None")
             return
 
-        print("Prerequisites :")
-        weight_per_prereq = alpha / (1 + alpha * len(self.prerequisites))
-        total_prereq_influence = 0.0
+        if self.raw_score <= 85:
+            print("Prerequisites :")
+            weight_per_prereq = alpha / (1 + alpha * len(self.prerequisites))
+            total_prereq_influence = 0.0
 
-        for prereq in self.prerequisites:
-            grade = prereq.grade if prereq.grade is not None else 0.0
-            influence = grade * weight_per_prereq
-            total_prereq_influence += influence
-            print(f"  - {prereq.id} ({prereq.name}): Grade {grade:.2f} -> Contributes {influence:.2f}")
+            for prereq in self.prerequisites:
+                grade = prereq.grade if prereq.grade is not None else 0.0
+                influence = grade * weight_per_prereq
+                total_prereq_influence += influence
+                print(f"  - {prereq.id} ({prereq.name}): Grade {grade:.2f} -> Contributes {influence:.2f}")
 
-        base_contribution = self.raw_score / (10 * (1 + alpha * len(self.prerequisites)))
-        print(f"Base score contribution : {base_contribution:.2f}")
-        print(f"Prerequisite contribution : {total_prereq_influence:.2f}")
+                base_contribution = self.raw_score / (10 * (1 + alpha * len(self.prerequisites)))
+                print(f"Base score contribution : {base_contribution:.2f}")
+                print(f"Prerequisite contribution : {total_prereq_influence:.2f}")
+        else:
+            print("Marks Threshold Crossed!!!")
+            print("Graded only on the basis of raw score")
 
     def __hash__(self) -> int:
         return hash(self.id)

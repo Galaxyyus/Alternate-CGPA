@@ -24,23 +24,24 @@ class GradeEngine:
         if not evaluated_courses:
             return 0.0
 
+        # Special any clause to adjust up_to_year or up_to_semester input
+        terminal_courses = [course for course in evaluated_courses if not any(dep in evaluated_courses for dep in course.dependents)]
+
+        if not terminal_courses:
+            return 0.0
+
         # Identify failures and reporting root causes
-        failed_in_scope = [c for c in evaluated_courses if c.is_failed]
+        failed_in_scope = [c for c in terminal_courses if c.is_failed]
         if failed_in_scope:
             print("\n!!! FAILURES DETECTED !!!")
             root_failures = set()
             for c in failed_in_scope:
                 root_failures.update(c.get_root_failures())
-            
-            print("To pass, the student must retake the following 'root' failed exams:")
+
+            print("To pass, the student must retake the following failed exams:")
             for rf in sorted(root_failures, key=lambda x: (x.year or 0, x.semester or 0)):
-                print(f"  - {rf.id}: {rf.name} (Year {rf.year}, Sem {rf.semester}) [Raw Score: {rf.raw_score}]")
+                print(f"  - {rf.id}: {rf.name} (Year {rf.year}, Sem {rf.semester}) - Raw Score: {rf.raw_score}")
             print("--------------------------\n")
-
-        terminal_courses = [course for course in evaluated_courses if not any(dep in evaluated_courses for dep in course.dependents)]
-
-        if not terminal_courses:
-            return 0.0
 
         total = sum(course.grade * self.graph.credit_map[course.category] for course in terminal_courses)  # type: ignore
         cgpa = total / sum(self.graph.credit_map[course.category] for course in terminal_courses)  # type: ignore

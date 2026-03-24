@@ -45,16 +45,14 @@
             "prerequisites": []
         },
         "MA103": {
-            "name": "Linear Algebra",
+            "name": "Linear Algebra and Calculus",
             "category": "Basic Science",
             "prerequisites": []
         },
-        "CS1010": {
-            "name": "UI/UX Design",
-            "category": "Web Development",
-            "prerequisites": [
-                "CS101"
-            ]
+        "HS104": {
+            "name": "Management",
+            "category": "Soft Skills",
+            "prerequisites": []
         },
         "CS105": {
             "name": "Encryption",
@@ -76,7 +74,7 @@
             ]
         },
         "MA108": {
-            "name": "Calculus",
+            "name": "Discrete Mathematics",
             "category": "Basic Science",
             "prerequisites": [
                 "MA103"
@@ -89,11 +87,11 @@
                 "MA103"
             ]
         },
-        "HS104": {
-            "name": "Management",
-            "category": "Soft Skills",
+        "CS1010": {
+            "name": "UI/UX Design",
+            "category": "Web Development",
             "prerequisites": [
-                "HS102"
+                "CS101"
             ]
         },
         "HS1011": {
@@ -107,7 +105,7 @@
             "name": "Statistics",
             "category": "Basic Science",
             "prerequisites": [
-                "MA108"
+                "MA103"
             ]
         },
         "CS113": {
@@ -123,10 +121,9 @@
             "prerequisites": []
         },
         "CS115": {
-            "name": "Data Structures",
+            "name": "Analysis of Algorithms",
             "category": "Core Subject",
             "prerequisites": [
-                "CS113",
                 "MA108"
             ]
         },
@@ -147,10 +144,11 @@
             ]
         },
         "HS117": {
-            "name": "Management",
+            "name": "Business Communication",
             "category": "Soft Skills",
             "prerequisites": [
-                "HS104"
+                "HS104",
+                "HS1011"
             ]
         },
         "CS119": {
