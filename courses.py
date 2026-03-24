@@ -9,6 +9,8 @@ class Course:
 
         self.raw_score: int = 0
         self.grade: float | None = None
+        self.is_failed: bool = False
+        self.failure_type: str | None = None # "SELF_FAIL" or "PREREQ_FAIL"
 
         self.prerequisites: set[Course] = set()
         self.dependents: set[Course] = set()
@@ -17,6 +19,32 @@ class Course:
         self.semester: int | None = None
 
     def compute_grade(self, alpha: float) -> None:
+        self.is_failed = False
+        self.failure_type = None
+
+        # Rule 1: Raw score < 40 -> Fail
+        if self.raw_score < 40:
+            self.is_failed = True
+            self.failure_type = "SELF_FAIL"
+            self.grade = 3.0
+            return
+
+        # Check for prerequisite failures
+        failed_prereqs = [p for p in self.prerequisites if p.is_failed]
+
+        if failed_prereqs:
+            if self.raw_score <= 85:
+                # Rule 2: Prerequisite failed and raw score <= 85 -> Fail
+                self.is_failed = True
+                self.failure_type = "PREREQ_FAIL"
+                self.grade = 3.0
+                return
+            else:
+                # Rule 3: Prerequisite failed but raw score > 85 -> Pass, ignore prereqs
+                self.grade = self.raw_score / 10
+                return
+
+        # Normal case
         if not self.prerequisites:
             self.grade = self.raw_score / 10
             return
@@ -29,6 +57,17 @@ class Course:
                 raise ValueError(f"Cannot compute {self.name}: prerequisite not evaluated yet")
 
         self.grade = ((self.raw_score / 10) + alpha * prerequisites_sum) / (1 + len(self.prerequisites) * alpha)
+
+    def get_root_failures(self) -> set[Course]:
+        if not self.is_failed:
+            return set()
+        if self.failure_type == "SELF_FAIL":
+            return {self}
+        
+        roots = set()
+        for prereq in self.prerequisites:
+            roots.update(prereq.get_root_failures())
+        return roots
 
     def print_details(self, alpha: float) -> None:
         print(f"\nCourse: {self.id} ({self.name})")
