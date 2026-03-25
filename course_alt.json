@@ -152,7 +152,7 @@
             ]
         },
         "CS119": {
-            "name": "DBMS",
+            "name": "Data Mining and Warehousing",
             "category": "Core Subject",
             "prerequisites": [
                 "CS107",

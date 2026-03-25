@@ -22,7 +22,6 @@ class CourseGraph:
             course.compute_grade(alpha)
 
     def validate(self) -> None:
-        """Validates the graph to ensure there are no cycles."""
         self.topological_sort()
 
     def topological_sort(self) -> list[Course]:

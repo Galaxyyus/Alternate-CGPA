@@ -2,7 +2,6 @@ from grade_engine import GradeEngine
 
 
 def main() -> None:
-    # alpha: float = float(input("Enter the alpha factor: "))
     alpha: float = 0.7
 
     course_file = "course.json"
@@ -15,7 +14,7 @@ def main() -> None:
         print("\n" + "-" * 50)
         print(f"Data Source: {course_file} / {score_file}")
         print("-" * 50)
-        print("1. Get CGPA up to a certain year/semester")
+        print("1. Get Grade up to a certain year/semester")
         print("2. Get course details")
         print("3. Calculate Old CGPA")
         print("4. Switch Data Source")
@@ -35,12 +34,10 @@ def main() -> None:
                 print("Invalid Input! Enter only one field.")
                 continue
 
-            cgpa = engine.get_cgpa(up_to_year=up_to_year, up_to_semester=up_to_semester)
+            cgpa = engine.get_grade(up_to_year=up_to_year, up_to_semester=up_to_semester)
 
             msg = "Overall CGPA"
-            if up_to_year and up_to_semester:
-                msg = f"CGPA up to Year {up_to_year}, Semester {up_to_semester}"
-            elif up_to_year:
+            if up_to_year:
                 msg = f"CGPA up to Year {up_to_year}"
             elif up_to_semester:
                 msg = f"CGPA up to Semester {up_to_semester}"

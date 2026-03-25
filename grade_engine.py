@@ -14,7 +14,7 @@ class GradeEngine:
         for course in topo_order:
             course.compute_grade(self.alpha)
 
-    def get_cgpa(self, up_to_year: int | None = None, up_to_semester: int | None = None) -> float:
+    def get_grade(self, up_to_year: int | None = None, up_to_semester: int | None = None) -> float:
         evaluated_courses = [course for course in self.graph.courses.values() if course.grade is not None]
 
         if up_to_year is not None:
@@ -64,9 +64,9 @@ class GradeEngine:
         total_weight = 0.0
 
         for course in evaluated_courses:
-            weight = self.graph.credit_map.get(course.category, 0) # type: ignore
+            weight = self.graph.credit_map.get(course.category, 0)  # type: ignore
             grade_val = math.ceil(course.raw_score / 10.0)
-            
+
             total_weighted_grade += grade_val * weight
             total_weight += weight
 
