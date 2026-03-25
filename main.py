@@ -2,7 +2,7 @@ from grade_engine import GradeEngine
 
 
 def main() -> None:
-    alpha: float = 0.7
+    alpha: float = 0.3
 
     course_file = "course.json"
     score_file = "score.json"
@@ -34,15 +34,15 @@ def main() -> None:
                 print("Invalid Input! Enter only one field.")
                 continue
 
-            cgpa = engine.get_grade(up_to_year=up_to_year, up_to_semester=up_to_semester)
+            grade = engine.get_grade(up_to_year=up_to_year, up_to_semester=up_to_semester)
 
-            msg = "Overall CGPA"
+            msg = "Overall Grade"
             if up_to_year:
-                msg = f"CGPA up to Year {up_to_year}"
+                msg = f"Grade up to Year {up_to_year}"
             elif up_to_semester:
-                msg = f"CGPA up to Semester {up_to_semester}"
+                msg = f"Grade up to Semester {up_to_semester}"
 
-            print(f"{msg}: {cgpa:.2f}")
+            print(f"{msg}: {grade:.2f}")
 
         elif choice == "2":
             course_identifier: str = input("Enter course ID or name: ")
