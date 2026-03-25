@@ -1,4 +1,5 @@
 import file_loader
+import math
 
 
 class GradeEngine:
@@ -47,6 +48,32 @@ class GradeEngine:
         cgpa = total / sum(self.graph.credit_map[course.category] for course in terminal_courses)  # type: ignore
 
         return cgpa
+
+    def get_old_cgpa(self, up_to_year: int | None = None, up_to_semester: int | None = None) -> float:
+        evaluated_courses = [course for course in self.graph.courses.values()]
+
+        if up_to_year is not None:
+            evaluated_courses = [c for c in evaluated_courses if c.year is not None and c.year <= up_to_year]
+        if up_to_semester is not None:
+            evaluated_courses = [c for c in evaluated_courses if c.semester is not None and c.semester <= up_to_semester]
+
+        if not evaluated_courses:
+            return 0.0
+
+        total_weighted_grade = 0.0
+        total_weight = 0.0
+
+        for course in evaluated_courses:
+            weight = self.graph.credit_map.get(course.category, 0) # type: ignore
+            grade_val = math.ceil(course.raw_score / 10.0)
+            
+            total_weighted_grade += grade_val * weight
+            total_weight += weight
+
+        if total_weight == 0:
+            return 0.0
+
+        return total_weighted_grade / total_weight
 
     def print_course_details(self, course_identifier: str) -> None:
         target_course = None
