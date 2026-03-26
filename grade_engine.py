@@ -3,18 +3,41 @@ import math
 
 
 class GradeEngine:
+    """The core engine responsible for orchestrating course evaluation and CGPA calculation."""
+
     def __init__(self, alpha: float, course_file: str = "course.json", score_file: str = "score.json") -> None:
+        """
+        Initialize the engine, load the data, and compute initial grades.
+
+        Args:
+            alpha: Prerequisite influence factor.
+            course_file: JSON file containing curriculum structure.
+            score_file: JSON file containing student raw scores.
+        """
         self.alpha = alpha
 
+        # Hydrate the graph from JSON files
         graph = file_loader.load_courses_structure(course_file)
         file_loader.load_grades(score_file, graph)
         self.graph = graph
 
+        # Pre-compute grades for all courses in dependency order
         topo_order = graph.topological_sort()
         for course in topo_order:
             course.compute_grade(self.alpha)
 
     def get_grade(self, up_to_year: int | None = None, up_to_semester: int | None = None) -> float:
+        """
+        Calculates the Alternate grade based on the terminal-averaging DAG model.
+        
+        Args:
+            up_to_year: Optional filter to limit calculation to courses up to a certain year.
+            up_to_semester: Optional filter to limit calculation up to a certain semester.
+        
+        Returns:
+            The calculated Alternate grade.
+        """
+        # Filter evaluation scope
         evaluated_courses = [course for course in self.graph.courses.values() if course.grade is not None]
 
         if up_to_year is not None:
@@ -44,12 +67,17 @@ class GradeEngine:
                 print(f"  - {rf.id}: {rf.name} (Year {rf.year}, Sem {rf.semester}) - Raw Score: {rf.raw_score}")
             print("--------------------------\n")
 
+        # Compute weighted average of terminal courses
         total = sum(course.grade * self.graph.credit_map[course.category] for course in terminal_courses)  # type: ignore
         cgpa = total / sum(self.graph.credit_map[course.category] for course in terminal_courses)  # type: ignore
 
         return cgpa
 
     def get_old_cgpa(self, up_to_year: int | None = None, up_to_semester: int | None = None) -> float:
+        """
+        Calculates the Old CGPA using a standard credit-based weighted average of ceiled grades.
+        Ignores DAG prerequisites.
+        """
         evaluated_courses = [course for course in self.graph.courses.values()]
 
         if up_to_year is not None:
@@ -76,6 +104,7 @@ class GradeEngine:
         return total_weighted_grade / total_weight
 
     def print_course_details(self, course_identifier: str) -> None:
+        """Prints diagnostic details for a specific course by ID or Name."""
         target_course = None
         for cid, course in self.graph.courses.items():
             if cid == course_identifier or course.name == course_identifier:

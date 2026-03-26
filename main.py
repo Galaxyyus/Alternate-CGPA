@@ -2,11 +2,18 @@ from grade_engine import GradeEngine
 
 
 def main() -> None:
+    """
+    Entry point for the Alternate CGPA Calculator CLI.
+    Provides a menu-driven interface for querying different CGPA models and course details.
+    """
+    # Configuration: alpha factor determines prerequisite influence (0.0 to 1.0)
     alpha: float = 0.3
 
-    course_file = "course.json"
-    score_file = "score.json"
+    # Default data sources
+    course_file = "course_alt.json"
+    score_file = "score_alt.json"
 
+    # Initialize the engine
     engine = GradeEngine(alpha, course_file, score_file)
 
     running: bool = True
@@ -24,6 +31,7 @@ def main() -> None:
         choice: str = input("Enter your choice: ")
 
         if choice == "1":
+            # Option 1: Alternate Grade (DAG-based)
             year_input: str = input("Enter year (leave empty for overall): ")
             semester_input: str = input("Enter semester (leave empty for overall): ")
 
@@ -45,9 +53,12 @@ def main() -> None:
             print(f"{msg}: {grade:.2f}")
 
         elif choice == "2":
+            # Option 2: Individual Course Breakdown
             course_identifier: str = input("Enter course ID or name: ")
             engine.print_course_details(course_identifier)
+
         elif choice == "3":
+            # Option 3: Old CGPA (Standard Weighted Average)
             year_input: str = input("Enter year (leave empty for overall): ")
             semester_input: str = input("Enter semester (leave empty for overall): ")
 
@@ -60,7 +71,9 @@ def main() -> None:
 
             old_cgpa = engine.get_old_cgpa(up_to_year=up_to_year, up_to_semester=up_to_semester)
             print(f"Old CGPA: {old_cgpa:.2f}")
+
         elif choice == "4":
+            # Re-initialize engine with new data sources
             if course_file == "course.json":
                 course_file, score_file = "course_alt.json", "score_alt.json"
             else:
