@@ -18,15 +18,15 @@ def main() -> None:
 
     running: bool = True
     while running:
-        print("\n" + "-" * 50)
+        print()
         print(f"Data Source: {course_file} / {score_file}")
-        print("-" * 50)
+        print('-' * 100)
         print("1. Get Grade up to a certain year/semester")
         print("2. Get course details")
         print("3. Calculate Old CGPA")
         print("4. Switch Data Source")
         print("5. Exit")
-        print("-" * 50)
+        print()
 
         choice: str = input("Enter your choice: ")
 
