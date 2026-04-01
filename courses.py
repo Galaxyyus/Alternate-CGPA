@@ -45,6 +45,7 @@ class Course:
         if self.raw_score >= 85:
             self.grade = self.raw_score / 10
             return
+
         # Raw score < 40 -> Fail
         if self.raw_score < 40:
             self.is_failed = True
