@@ -6,7 +6,7 @@ def main() -> None:
     Entry point for the Alternate CGPA Calculator CLI.
     Provides a menu-driven interface for querying different CGPA models and course details.
     """
-    # Configuration: alpha factor determines prerequisite influence (0.0 to 1.0)
+    # Alpha factor determines prerequisite influence (0.0 to 1.0)
     alpha: float = 0.3
 
     # Default data sources
