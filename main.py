@@ -1,5 +1,7 @@
 from grade_engine import GradeEngine
 
+import math
+
 
 def main() -> None:
     """
@@ -7,7 +9,7 @@ def main() -> None:
     Provides a menu-driven interface for querying different CGPA models and course details.
     """
     # Alpha factor determines prerequisite influence (0.0 to 1.0)
-    alpha: float = 0.3
+    alpha: float = 1 / math.e
 
     # Default data sources
     course_file = "course_alt.json"
@@ -20,7 +22,7 @@ def main() -> None:
     while running:
         print()
         print(f"Data Source: {course_file} / {score_file}")
-        print('-' * 100)
+        print("-" * 100)
         print("1. Get Grade up to a certain year/semester")
         print("2. Get course details")
         print("3. Calculate Old CGPA")
