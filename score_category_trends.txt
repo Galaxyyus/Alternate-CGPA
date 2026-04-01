@@ -1,0 +1,26 @@
+{
+    "CS101": 65,
+    "HS102": 92,
+    "MA103": 42,
+    "HS104": 88,
+    "CS105": 94,
+    "CS106": 82,
+    "CS107": 55,
+    "MA108": 89,
+    "CS109": 65,
+    "CS1010": 75,
+    "HS1011": 78,
+    "MA112": 55,
+    "CS113": 75,
+    "CS114": 77,
+    "CS115": 85,
+    "CS116": 85,
+    "CS118": 95,
+    "HS117": 65,
+    "CS119": 94,
+    "CS120": 70
+}
+
+Web-Dev and Core go up
+Cyber-Sec and Soft-Skills go down
+Basic Sciences fluctuate
