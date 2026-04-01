@@ -55,12 +55,12 @@
             "prerequisites": []
         },
         "CS105": {
-            "name": "Encryption",
+            "name": "Cryptography",
             "category": "Cyber Security",
             "prerequisites": []
         },
         "CS106": {
-            "name": "Forensics",
+            "name": "Digital Forensics",
             "category": "Cyber Security",
             "prerequisites": [
                 "CS105"
@@ -160,7 +160,7 @@
             ]
         },
         "CS120": {
-            "name": "Network Security",
+            "name": "Cyber Security",
             "category": "Cyber Security",
             "prerequisites": [
                 "CS106",
