@@ -29,11 +29,11 @@ class GradeEngine:
     def get_grade(self, up_to_year: int | None = None, up_to_semester: int | None = None) -> float:
         """
         Calculates the Alternate grade based on the terminal-averaging DAG model.
-        
+
         Args:
             up_to_year: Optional filter to limit calculation to courses up to a certain year.
             up_to_semester: Optional filter to limit calculation up to a certain semester.
-        
+
         Returns:
             The calculated Alternate grade.
         """
@@ -94,7 +94,7 @@ class GradeEngine:
 
         for course in evaluated_courses:
             weight = self.graph.credit_map.get(course.category, 0)  # type: ignore
-            grade_val = math.ceil(course.raw_score / 10.0)
+            grade_val = math.ceil(course.raw_score / 10.0) if course.raw_score >= 40 else 3.0
 
             total_weighted_grade += grade_val * weight
             total_weight += weight
