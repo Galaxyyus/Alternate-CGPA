@@ -90,6 +90,7 @@ class GradeEngine:
 
         total_weighted_grade = 0.0
         total_weight = 0.0
+        failed_in_scope = []
 
         for course in evaluated_courses:
             weight = self.graph.credit_map.get(course.category, 0)  # type: ignore
@@ -97,6 +98,17 @@ class GradeEngine:
 
             total_weighted_grade += grade_val * weight
             total_weight += weight
+
+            if course.raw_score < 40:
+                failed_in_scope.append(course)
+
+        # Reporting failures for Old CGPA
+        if failed_in_scope:
+            print("\n!!! FAILURES DETECTED (Old CGPA Model) !!!")
+            print("To pass, the student must retake the following failed exams:")
+            for f in sorted(failed_in_scope, key=lambda x: (x.year or 0, x.semester or 0)):
+                print(f"  - {f.id}: {f.name} (Year {f.year}, Sem {f.semester}) - Raw Score: {f.raw_score}")
+            print("--------------------------\n")
 
         if total_weight == 0:
             return 0.0
