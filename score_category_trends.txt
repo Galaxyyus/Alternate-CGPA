@@ -19,6 +19,7 @@
     "HS117": 65,
     "CS119": 94,
     "CS120": 70
+    
 }
 
 Web-Dev and Core go up
